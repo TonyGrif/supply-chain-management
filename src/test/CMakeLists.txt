@@ -1,6 +1,9 @@
 enable_testing()
 
-set(TEST_CPP_FILES cpp/main.cpp)
+set(TEST_CPP_FILES 
+	cpp/main.cpp
+	cpp/Test_Factory.cpp
+	cpp/Test_Supplier.cpp)
 
 include(FetchContent)
 FetchContent_Declare(
