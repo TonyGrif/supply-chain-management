@@ -3,7 +3,8 @@ enable_testing()
 set(TEST_CPP_FILES 
 	cpp/main.cpp
 	cpp/Test_Factory.cpp
-	cpp/Test_Supplier.cpp)
+	cpp/Test_Supplier.cpp
+	cpp/Test_Part.cpp)
 
 include(FetchContent)
 FetchContent_Declare(
