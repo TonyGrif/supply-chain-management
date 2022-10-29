@@ -36,7 +36,7 @@ class Part
         /**
          * @brief Integer representation of the type of object this is.
          */
-        int TypeOfPart;
+        int type;
 
         /**
          * @brief Set the value of Type.

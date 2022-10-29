@@ -41,12 +41,12 @@ class Supplier
          * 
          * This variable will determine the Part production type, production rate, and time delay.
          */
-        char SupplierIdentification;
+        char supplierIdentification;
 
         /**
          * @brief Integer representation of time steps it takes for this supplier to create a Part.
          */
-        int PartProductionRate;
+        int partProductionRate;
 
         /**
          * @brief Set the SupplierIdentification.

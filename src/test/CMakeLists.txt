@@ -5,6 +5,7 @@ set(TEST_CPP_FILES
 	cpp/main.cpp
 	cpp/Test_Factory.cpp
 	cpp/Test_Supplier.cpp
+	cpp/Test_Warehouse.cpp
 	cpp/Test_Part.cpp)
 
 add_custom_target(tests)
