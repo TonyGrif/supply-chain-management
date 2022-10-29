@@ -7,6 +7,11 @@ TEST(PartTest, TestConstructor)
     FAIL() << "Not Implemented";
 }
 
+TEST(PartTest, TestNonDefaultConstructor)
+{
+    FAIL() << "Not Implemented";
+}
+
 TEST(PartTest, TestSetType)
 {
     FAIL() << "Not Implemented";

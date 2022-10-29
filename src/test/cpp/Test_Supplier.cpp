@@ -6,3 +6,13 @@ TEST(SupplierTest, TestConstructor)
 {
     FAIL() << "Not Implemented";
 }
+
+TEST(SupplierTest, TestIdentification)
+{
+    FAIL() << "Not Implemented";
+}
+
+TEST(SupplierTest, TestProductionRate)
+{
+    FAIL() << "Not Implemented";
+}
