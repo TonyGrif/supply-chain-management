@@ -35,4 +35,33 @@ TEST(WarehouseTest, TestAddPartType)
     warehouse.AddPartType(5);
 
     ASSERT_EQ(warehouse.NumberOfPartTypes(), (currentNumber+1));
+
+    currentNumber = warehouse.NumberOfPartTypes();
+    warehouse.AddPartType(5);
+
+    // Should not change
+    ASSERT_EQ(warehouse.NumberOfPartTypes(), currentNumber);
+}
+
+TEST(WarehouseTest, TestAddPart)
+{
+    Warehouse warehouse;
+    Part *firstPtr = new Part;
+    Part *secondPtr = new Part(3);
+
+    bool added = warehouse.AddPart(firstPtr);
+    ASSERT_TRUE(added);
+
+    added = warehouse.AddPart(secondPtr);
+    ASSERT_FALSE(added);
+
+    for(int x = 0; x < warehouse.Size()-1; x++) {
+        firstPtr = new Part;
+        added = warehouse.AddPart(firstPtr);
+        ASSERT_TRUE(added);
+    }
+
+    firstPtr = new Part;
+    added = warehouse.AddPart(firstPtr);
+    ASSERT_FALSE(added);
 }

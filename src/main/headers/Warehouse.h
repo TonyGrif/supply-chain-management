@@ -20,7 +20,7 @@ class Warehouse
          * Construct a new Warehouse object based on default constructor.
          * 
          * @param s Integer for maximum capacity of collection of Parts, default is 5.
-         * @param t Integer representation for the type of Part this object stores, default is 1
+         * @param t Integer representation for the type of Part this object stores, default is 1.
          */
         Warehouse(int s = 5, int t = 1);
 
@@ -45,13 +45,23 @@ class Warehouse
         /**
          * @brief Returns the number of Part types this object is currently storing. 
          * 
-         * @return Integer representation of number of parts. s
+         * @return Integer representation of number of parts.
          */
         int NumberOfPartTypes() const {
             int size = 0;
             for(auto& i : this->collectionOfParts) { size++; }
             return size;
         }
+
+        /**
+         * @brief Add a Part pointer to the Part collection.
+         * 
+         * @param pPtr Pointer to a Part object to be added if possible.
+         * 
+         * @return True if the Part was sucessfully added
+         * @return false if Part was not added as the warehouse does not store the type of Part given.
+         */
+        bool AddPart(Part* pPtr);
 
     private:
         /**
