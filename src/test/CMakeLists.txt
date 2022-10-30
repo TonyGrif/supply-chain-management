@@ -14,6 +14,7 @@ add_executable(test_executable ${TEST_CPP_FILES})
 target_link_libraries(
 	test_executable
 	GTest::gtest_main
+	Factory
 )
 
 add_dependencies(tests test_executable)

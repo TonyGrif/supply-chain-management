@@ -13,24 +13,19 @@ class Part
          * @brief Construct a new Part object.
          * 
          * Construct a new Part object and set the default type to 1.
-         */
-        Part();
-
-        /**
-         * @brief Construct a new Part object using the non-default constructor.
-         * 
-         * Construct a new Part object with the given parameter. 
          * 
          * @param T Integer representaiton of type.
          */
-        Part(int T);
+        Part(int T = 1);
 
         /**
          * @brief Retun the type to the user.
          * 
          * @return Int type.
          */
-        int Type() const;
+        int Type() const {
+            return this->type;
+        }
 
     private:
         /**
@@ -43,7 +38,9 @@ class Part
          * 
          * @param T Integer representation of type.
          */
-        void Type(int T);
+        void Type(int T) {
+            this->type = T;
+        }
 };
 
 #endif
