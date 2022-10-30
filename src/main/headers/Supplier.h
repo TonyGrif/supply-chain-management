@@ -1,13 +1,12 @@
 #ifndef SUPPLIER_H 
 #define SUPPLIER_H
 
-#include "Part.h"
+#include "Warehouse.h"
 
 /**
  * @brief Supplier Class.
  * 
  * This class is responsible for generating parts and sending them to the factory.
- * @TODO: Create warehouse to store parts.
  */
 class Supplier
 {
@@ -47,6 +46,11 @@ class Supplier
          * @brief Integer representation of time steps it takes for this supplier to create a Part.
          */
         int partProductionRate;
+
+        /**
+         * @brief Parts storage.
+         */
+        Warehouse storage;
 
         /**
          * @brief Set the SupplierIdentification.

@@ -1,6 +1,7 @@
 #ifndef FACTORY_H 
 #define FACTORY_H
 
+#include "Warehouse.h"
 #include "Supplier.h"
 
 #include <list>
@@ -14,6 +15,13 @@ class Factory
 {
     public:
         using SupplierCollection = std::list<Supplier*>;
+
+        /**
+         * @brief Construct a new Factory object.
+         * 
+         * Construct a new Factory object based on the default constructor. 
+         */
+        Factory();
 
     private:
         /**

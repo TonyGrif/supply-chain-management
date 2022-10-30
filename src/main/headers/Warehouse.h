@@ -14,8 +14,6 @@
 class Warehouse 
 {
     public:
-        //using PartsCollection = std::list<std::stack<Part>>;
-
         /**
          * @brief Construct a new Warehouse object.
          * 
@@ -23,7 +21,38 @@ class Warehouse
          */
         Warehouse();
 
+        /**
+         * @brief Return the maximum size of this object.
+         * 
+         * @return Int representation of value stored at sizeOfWarehouse.
+         */
+        int Size() const;
+
     private:
+        /**
+         * @brief PartCollection struct. 
+         * 
+         * This struct is resoponsible for determining a type of Part to store and a list of stored parts. 
+         */
+        struct PartCollection
+        {
+            /**
+             * @brief Determines the type of Part that will be stored. 
+             */
+            int collectionDesignation;
+
+            /**
+             * @brief Collection of Part pointers that are currently stored in this collection.
+             */
+            std::list<Part*> partStorage;
+        };
+
+        /**
+         * @brief Stack collection of the collection of Parts. 
+         */
+        std::stack<PartCollection> collectionOfParts;
+        
+
         /**
          * @brief Integer representation of the capacity of this warehouse.
          * 
@@ -32,9 +61,11 @@ class Warehouse
         int sizeOfWarehouse;
 
         /**
-         * @brief Collection of completed parts. 
+         * @brief Set the maximum size of this object.
+         * 
+         * @param s Integer representation of maximum size. 
          */
-        //PartsCollection storedParts;
+        void Size(int s);
 };
 
 #endif
