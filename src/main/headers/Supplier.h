@@ -16,7 +16,8 @@ class Supplier
          * 
          * Construct a new Supplier object with the default constructor.
          * Default SupplierIdentification will be A.
-         * Default PartProducrtionRate will be 2.
+         * Default PartProductionRate will be 2.
+         * Default warehouse constructor called. 
          */
         Supplier(char si = 'A', int pr = 2);
 
@@ -25,14 +26,18 @@ class Supplier
          * 
          * @return Char held by SupplierIdentification.
          */
-        char Identification() const;
+        char Identification() const {
+            return this->supplierIdentification;
+        }
 
         /**
          * @brief Return the PartProductionRate.
          * 
          * @return Int help by PartProductionRate.
          */
-        int ProductionRate() const;
+        int ProductionRate() const {
+            return this->partProductionRate;
+        }
 
     private:
         /**
@@ -57,14 +62,18 @@ class Supplier
          * 
          * @param si Character representation of supplier identification.
          */
-        void Identification(char si);
+        void Identification(char si) {
+            this->supplierIdentification = si;
+        }
 
         /**
          * @brief Set the PartProductionRate.
          * 
          * @param pr Integer representation of the production rate
          */
-        void ProductionRate(int pr);
+        void ProductionRate(int pr) {
+            this->partProductionRate = pr;
+        }
 };
 
 #endif

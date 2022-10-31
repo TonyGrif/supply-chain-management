@@ -4,15 +4,32 @@
 
 TEST(SupplierTest, TestConstructor)
 {
-    FAIL() << "Not Implemented";
+    Supplier sup;
+
+    ASSERT_EQ(sup.Identification(), 'A');
+    ASSERT_EQ(sup.ProductionRate(), 2);
 }
 
 TEST(SupplierTest, TestIdentification)
 {
-    FAIL() << "Not Implemented";
+    Supplier sup;
+    Supplier supS('S');
+
+    ASSERT_EQ(sup.ProductionRate(), supS.ProductionRate());
+
+    ASSERT_NE(sup.Identification(), supS.Identification());
+    ASSERT_EQ(sup.Identification(), 'A');
+    ASSERT_EQ(supS.Identification(), 'S');
 }
 
 TEST(SupplierTest, TestProductionRate)
 {
-    FAIL() << "Not Implemented";
+    Supplier sup;
+    Supplier sup3('A', 3);
+
+    ASSERT_EQ(sup.Identification(), sup3.Identification());
+
+    ASSERT_NE(sup.ProductionRate(), sup3.ProductionRate());
+    ASSERT_EQ(sup.ProductionRate(), 2);
+    ASSERT_EQ(sup3.ProductionRate(), 3);
 }
