@@ -20,16 +20,33 @@ class Factory
          * @brief Construct a new Factory object.
          * 
          * Construct a new Factory object based on the default constructor. 
+         * Default Warehouse will be set to defaults.
          */
         Factory();
 
+        /**
+         * @brief Add a new part type to the storage variable.
+         * 
+         * @param t Integer representation of the part type.
+         */
+        void AddNewPartType(int t) {
+            this->storage.AddPartType(t);
+        }
+
+        /**
+         * @brief Return the number of part types that storage is currently holding.
+         * 
+         * @return Int number of part types in play for this object.
+         */
+        int NumberOfPartTypes() const {
+            return this->storage.NumberOfPartTypes();
+        }
+
     private:
         /**
-         * @brief Collection of the available Suppliers.
-         * 
-         * Collection of Supplier pointers.
+         * @brief Warehouse collection for all the parts a Factory will need.
          */
-        SupplierCollection CollectionOfSuppliers;
+        Warehouse storage;
 };
 
 #endif 
