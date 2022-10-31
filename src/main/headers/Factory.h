@@ -53,6 +53,16 @@ class Factory
             return this->storage.AddPart(pPtr);
         }
 
+        /**
+         * @brief Return the number of Parts of a given type.
+         * 
+         * @param pt Integer representation of a Part type.
+         * @return Integer number of Parts.
+         */
+        int NumberOfParts(int pt) {
+            return this->storage.NumOfParts(pt);
+        }
+
     private:
         /**
          * @brief Warehouse collection for all the parts a Factory will need.
