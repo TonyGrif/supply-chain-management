@@ -54,6 +54,17 @@ class Factory
         }
 
         /**
+         * @brief Remove a Part from the warehouse.
+         * 
+         * @param pt Integer representation of the part designation
+         * @return True if part was removed.
+         * @return False if part was not removed.
+         */
+        bool RemovePart(int pt) {
+            return this->storage.RemovePart(pt);
+        }
+
+        /**
          * @brief Return the number of Parts of a given type.
          * 
          * @param pt Integer representation of a Part type.

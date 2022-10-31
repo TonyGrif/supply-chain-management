@@ -64,6 +64,16 @@ class Warehouse
         bool AddPart(Part* pPtr);
 
         /**
+         * @brief Remove a Part of a given type.
+         * 
+         * @param pt
+         * 
+         * @return True if there is a Part of type to remove.
+         * @return False if there is no Part to remove of type. 
+         */
+        bool RemovePart(int pt);
+
+        /**
          * @brief Return the number of Parts of a given type currently stored. 
          * 
          * @param pt Integer representation of Part type.

@@ -33,3 +33,17 @@ TEST(FactoryTest, TestAddPart)
     added = fac.AddPart(pPtr);
     ASSERT_FALSE(added);
 }
+
+TEST(FactoryTest, TestRemovePart)
+{
+    Factory fac;
+    Part* ptr;
+
+    ASSERT_FALSE(fac.RemovePart(1));
+    ASSERT_FALSE(fac.RemovePart(3));
+
+    ptr = new Part;
+    fac.AddPart(ptr);
+
+    ASSERT_TRUE(fac.RemovePart(1));
+}

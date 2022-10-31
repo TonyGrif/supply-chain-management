@@ -74,3 +74,22 @@ TEST(WarehouseTest, TestAddPart)
     ASSERT_EQ(warehouse.Size(), warehouse.NumOfParts(1));
     ASSERT_EQ(0, warehouse.NumOfParts(3));
 }
+
+TEST(WarehouseTest, TestRemovePart)
+{
+    Warehouse warehouse;
+    Part* pPtr;
+
+    ASSERT_FALSE(warehouse.RemovePart(1));
+
+    for(int x = 0; x < warehouse.Size(); x++) {
+        pPtr = new Part;
+        warehouse.AddPart(pPtr);
+    }
+
+    ASSERT_FALSE(warehouse.RemovePart(3));
+
+    for(int x = 0; x < warehouse.Size(); x++) {
+        ASSERT_TRUE(warehouse.RemovePart(1));
+    }
+}

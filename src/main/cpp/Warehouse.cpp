@@ -31,3 +31,14 @@ bool Warehouse::AddPart(Part* ptr)
 
     return false;
 }
+
+bool Warehouse::RemovePart(int pt) 
+{
+    for(auto& i : this->collectionOfParts) {
+        if(i.collectionDesignation == pt && i.partStorage.size() != 0) {
+            i.partStorage.pop();
+            return true;
+        }
+    }
+    return false;
+}
