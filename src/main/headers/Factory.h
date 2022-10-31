@@ -70,7 +70,7 @@ class Factory
          * @param pt Integer representation of a Part type.
          * @return Integer number of Parts.
          */
-        int NumberOfParts(int pt) {
+        int NumberOfParts(int pt) const {
             return this->storage.NumOfParts(pt);
         }
 

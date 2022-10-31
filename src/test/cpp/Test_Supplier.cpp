@@ -8,6 +8,45 @@ TEST(SupplierTest, TestConstructor)
 
     ASSERT_EQ(sup.Identification(), 'A');
     ASSERT_EQ(sup.ProductionRate(), 2);
+
+    ASSERT_EQ(sup.NumberOfPartTypes(), 1);
+    ASSERT_EQ(sup.NumberOfParts(1), 0);
+}
+
+TEST(SupplierTest, TestAddNewPart)
+{
+    Supplier sup;
+    int num = sup.NumberOfPartTypes();
+
+    sup.AddNewPartType(7);
+    ASSERT_EQ(sup.NumberOfPartTypes(), (num+1));
+
+    sup.AddNewPartType(1);
+    ASSERT_EQ(sup.NumberOfPartTypes(), (num+1));
+}
+
+TEST(SupplierTest, TestAddPart)
+{
+    Supplier sup;
+    Part* pPtr = new Part(1);
+    ASSERT_TRUE(sup.AddPart(pPtr));
+
+    pPtr = new Part(3);
+    ASSERT_FALSE(sup.AddPart(pPtr));
+}
+
+TEST(SupplierTest, TestRemovePart)
+{
+    Supplier sup;
+    Part* ptr;
+
+    ASSERT_FALSE(sup.RemovePart(1));
+    ASSERT_FALSE(sup.RemovePart(3));
+
+    ptr = new Part;
+    sup.AddPart(ptr);
+
+    ASSERT_TRUE(sup.RemovePart(1));
 }
 
 TEST(SupplierTest, TestIdentification)
