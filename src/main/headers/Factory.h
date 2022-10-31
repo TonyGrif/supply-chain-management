@@ -42,6 +42,17 @@ class Factory
             return this->storage.NumberOfPartTypes();
         }
 
+        /**
+         * @brief Add Part to the warehouse for storage.
+         * 
+         * @param pPtr Part pointer to a new Part to be added. 
+         * @return True if the Part was successfully added.
+         * @return False if the Part was not added to the collection.
+         */
+        bool AddPart(Part* pPtr) {
+            return this->storage.AddPart(pPtr);
+        }
+
     private:
         /**
          * @brief Warehouse collection for all the parts a Factory will need.

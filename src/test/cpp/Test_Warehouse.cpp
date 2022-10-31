@@ -15,6 +15,9 @@ TEST(WarehouseTest, TestConstructor)
 
     ASSERT_EQ(warehouse.NumberOfPartTypes(), 1);
     ASSERT_EQ(warehouse3.NumberOfPartTypes(), 1);
+
+    ASSERT_EQ(warehouse.NumOfParts(1), 0);
+    ASSERT_EQ(warehouse3.NumOfParts(3), 0);
 }
 
 TEST(WarehouseTest, TestWarehouseSize)
@@ -41,6 +44,8 @@ TEST(WarehouseTest, TestAddPartType)
 
     // Should not change
     ASSERT_EQ(warehouse.NumberOfPartTypes(), currentNumber);
+
+    ASSERT_EQ(0, warehouse.NumOfParts(5));
 }
 
 TEST(WarehouseTest, TestAddPart)
@@ -54,6 +59,7 @@ TEST(WarehouseTest, TestAddPart)
 
     added = warehouse.AddPart(secondPtr);
     ASSERT_FALSE(added);
+    ASSERT_EQ(0, warehouse.NumOfParts(3));
 
     for(int x = 0; x < warehouse.Size()-1; x++) {
         firstPtr = new Part;
@@ -64,4 +70,7 @@ TEST(WarehouseTest, TestAddPart)
     firstPtr = new Part;
     added = warehouse.AddPart(firstPtr);
     ASSERT_FALSE(added);
+
+    ASSERT_EQ(warehouse.Size(), warehouse.NumOfParts(1));
+    ASSERT_EQ(0, warehouse.NumOfParts(3));
 }

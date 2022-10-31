@@ -63,11 +63,24 @@ class Warehouse
          */
         bool AddPart(Part* pPtr);
 
+        /**
+         * @brief Return the number of Parts of a given type currently stored. 
+         * 
+         * @param pt Integer representation of Part type.
+         * @return Integer number of Parts currently stored. 
+         */
+        int NumOfParts(int pt) const {
+            for(auto& i : this->collectionOfParts) {
+                if(i.collectionDesignation == pt) { return i.partStorage.size(); }
+            }
+            return 0;
+        }
+
     private:
         /**
          * @brief PartCollection struct. 
          * 
-         * This struct is resoponsible for determining a type of Part to store and a list of stored parts. 
+         * This struct is responsible for determining a type of Part to store and a list of stored parts. 
          */
         struct PartCollection
         {

@@ -20,3 +20,16 @@ TEST(FactoryTest, TestAddNewPartType)
     fac.AddNewPartType(1);
     ASSERT_EQ(fac.NumberOfPartTypes(), (num+1));
 }
+
+TEST(FactoryTest, TestAddPart)
+{
+    Factory fac;
+
+    Part* pPtr = new Part(1);
+    bool added = fac.AddPart(pPtr);
+    ASSERT_TRUE(added);
+
+    pPtr = new Part(3);
+    added = fac.AddPart(pPtr);
+    ASSERT_FALSE(added);
+}
