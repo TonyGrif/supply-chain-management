@@ -58,7 +58,7 @@ class Warehouse
          * 
          * @param pPtr Pointer to a Part object to be added if possible.
          * 
-         * @return True if the Part was sucessfully added
+         * @return True if the Part was sucessfully added.
          * @return false if Part was not added as the warehouse does not store the type of Part given.
          */
         bool AddPart(Part* pPtr);
@@ -93,6 +93,8 @@ class Warehouse
          */
         struct PartCollection
         {
+            using CollectionOfParts = std::stack<Part*>;
+
             /**
              * @brief Construct a new Part Collection object.
              * 
@@ -113,11 +115,11 @@ class Warehouse
             /**
              * @brief Collection of Part pointers that are currently stored in this collection.
              */
-            std::stack<Part*> partStorage;
+            CollectionOfParts partStorage;
         };
 
         /**
-         * @brief Stack collection of the collection of Parts. 
+         * @brief List collection of the collection of Parts. 
          */
         std::list<PartCollection> collectionOfParts;
         
