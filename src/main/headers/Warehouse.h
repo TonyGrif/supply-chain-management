@@ -68,10 +68,9 @@ class Warehouse
          * 
          * @param pt Integer representation of the part type to be poped.
          * 
-         * @return True if there is a Part of type to remove.
-         * @return False if there is no Part to remove of type. 
+         * @return Pointer to the top element of the Part stack. 
          */
-        bool RemovePart(int pt);
+        Part* RemovePart(int pt);
 
         /**
          * @brief Return the number of Parts of a given type currently stored. 
@@ -134,7 +133,7 @@ class Warehouse
          * 
          * @param s Integer representation of maximum size. 
          */
-        void Size(int s) {
+        void Capacity(int s) {
             this->sizeOfWarehouse = s;
         }
 };

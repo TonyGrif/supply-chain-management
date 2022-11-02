@@ -32,13 +32,14 @@ bool Warehouse::AddPart(Part* ptr)
     return false;
 }
 
-bool Warehouse::RemovePart(int pt) 
+Part* Warehouse::RemovePart(int pt) 
 {
     for(auto& i : this->collectionOfParts) {
         if(i.collectionDesignation == pt && i.partStorage.size() != 0) {
+            Part* retPart = i.partStorage.top();
             i.partStorage.pop();
-            return true;
+            return retPart;
         }
     }
-    return false;
+    return NULL;
 }
