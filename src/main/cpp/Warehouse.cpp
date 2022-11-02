@@ -2,7 +2,7 @@
 
 Warehouse::Warehouse(int s, int t)
 {
-    this->Size(s);
+    this->Capacity(s);
     this->AddPartType(t);
 }
 
