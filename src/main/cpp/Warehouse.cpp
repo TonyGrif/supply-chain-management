@@ -23,7 +23,7 @@ bool Warehouse::AddPart(Part* ptr)
 {
     for(auto& i : this->collectionOfParts)
     {
-        if(i.collectionDesignation == ptr->Type() && i.partStorage.size() < this->Size()) {
+        if(i.collectionDesignation == ptr->Type() && i.partStorage.size() < this->Capacity()) {
             i.partStorage.push(ptr);
             return true;
         }

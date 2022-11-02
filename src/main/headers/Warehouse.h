@@ -25,11 +25,11 @@ class Warehouse
         Warehouse(int s = 5, int t = 1);
 
         /**
-         * @brief Return the maximum size of this object.
+         * @brief Return the maximum capacity of this object.
          * 
          * @return Int representation of value stored at sizeOfWarehouse.
          */
-        int Size() const {
+        int Capacity() const {
             return this->sizeOfWarehouse;
         }
 
