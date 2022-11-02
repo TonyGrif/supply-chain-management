@@ -12,6 +12,14 @@ class Supplier
 {
     public:
         /**
+         * @brief Conduct one action time step.
+         * 
+         * During this timestep, the Supplier will increment the counter until a part is ready.
+         * If a part is ready, add it to the warehouse.
+         */
+        void TimeStep();
+
+        /**
          * @brief Construct a new Supplier object.
          * 
          * Construct a new Supplier object with the default constructor.
@@ -53,7 +61,7 @@ class Supplier
         /**
          * @brief Remove a Part from the warehouse.
          * 
-         * @param pt Integer representation of the part designation
+         * @param pt Integer representation of the part designation.
          * @return True if part was removed.
          * @return False if part was not removed.
          */
@@ -89,6 +97,15 @@ class Supplier
             return this->partProductionRate;
         }
 
+        /**
+         * @brief Return the amount of time steps left until a Part has been produced.
+         * 
+         * @return Integer (production rate - time elapsed).
+         */
+        int ReturnTimeTillProduce() const {
+            return (this->ProductionRate() - this->timeElapsed);
+        }
+
     private:
         /**
          * @brief Character representation of this Supplier.
@@ -101,6 +118,13 @@ class Supplier
          * @brief Integer representation of time steps it takes for this supplier to create a Part.
          */
         int partProductionRate;
+
+        /**
+         * @brief Integer representation of how many time steps have currently been taken.
+         * 
+         * This variable will return to zero once it reaches the same number as the partProductionRate.
+         */
+        int timeElapsed;
 
         /**
          * @brief Parts storage.
@@ -119,7 +143,7 @@ class Supplier
         /**
          * @brief Set the PartProductionRate.
          * 
-         * @param pr Integer representation of the production rate
+         * @param pr Integer representation of the production rate.
          */
         void ProductionRate(int pr) {
             this->partProductionRate = pr;
