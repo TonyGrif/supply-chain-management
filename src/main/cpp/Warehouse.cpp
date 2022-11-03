@@ -1,9 +1,13 @@
 #include "../headers/Warehouse.h"
 
-Warehouse::Warehouse(int s, int t)
+Warehouse::Warehouse(std::initializer_list<int> types, int s)
 {
     this->Size(s);
-    this->AddPartType(t);
+    
+    for(auto& i : types)
+    {
+        this->AddPartType(i);
+    }
 }
 
 void Warehouse::AddPartType(int t)

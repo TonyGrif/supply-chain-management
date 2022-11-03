@@ -5,6 +5,7 @@
 
 #include <list>
 #include <stack>
+#include <initializer_list>
 
 /**
  * @brief Warehouse class. 
@@ -19,11 +20,11 @@ class Warehouse
          * 
          * Construct a new Warehouse object based on default constructor.
          * 
+         * @param types Collection of integers to determine part types stored in this object.
          * @param s Integer for maximum capacity of collection of Parts, default is 5.
-         * @param t Integer representation for the type of Part this object stores, default is 1.
          */
-        Warehouse(int s = 5, int t = 1);
-
+        Warehouse(std::initializer_list<int> types, int s = 5);
+    
         /**
          * @brief Return the maximum size of this object.
          * 

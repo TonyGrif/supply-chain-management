@@ -6,8 +6,8 @@ using ::testing::Ne;
 
 TEST(WarehouseTest, TestConstructor)
 {
-    Warehouse warehouse;
-    Warehouse warehouse3(3);
+    Warehouse warehouse({1});
+    Warehouse warehouse3({1}, 3);
 
     ASSERT_EQ(warehouse.Size(), 5);
     ASSERT_NE(warehouse.Size(), warehouse3.Size());
@@ -20,10 +20,21 @@ TEST(WarehouseTest, TestConstructor)
     ASSERT_EQ(warehouse3.NumOfParts(3), 0);
 }
 
+TEST(WarehouseTest, TestVariableConstructor)
+{
+    Warehouse warehouse({1});
+    Warehouse bigWarehouse({1, 2, 3, 4, 5, 6, 7});
+
+    ASSERT_NE(warehouse.NumberOfPartTypes(), bigWarehouse.NumberOfPartTypes());
+    ASSERT_EQ(bigWarehouse.NumberOfPartTypes(), 7);
+
+    ASSERT_EQ(warehouse.Size(), bigWarehouse.Size());
+}
+
 TEST(WarehouseTest, TestWarehouseSize)
 {
-    Warehouse warehouse;
-    Warehouse warehouse3(3);
+    Warehouse warehouse({1});
+    Warehouse warehouse3({1}, 3);
 
     ASSERT_EQ(warehouse.Size(), 5);
     ASSERT_NE(warehouse.Size(), warehouse3.Size());
@@ -32,7 +43,7 @@ TEST(WarehouseTest, TestWarehouseSize)
 
 TEST(WarehouseTest, TestAddPartType)
 {
-    Warehouse warehouse;
+    Warehouse warehouse({1});
 
     int currentNumber = warehouse.NumberOfPartTypes();
     warehouse.AddPartType(5);
@@ -50,7 +61,7 @@ TEST(WarehouseTest, TestAddPartType)
 
 TEST(WarehouseTest, TestAddPart)
 {
-    Warehouse warehouse;
+    Warehouse warehouse({1});
     Part *firstPtr = new Part;
     Part *secondPtr = new Part(3);
 
@@ -77,7 +88,7 @@ TEST(WarehouseTest, TestAddPart)
 
 TEST(WarehouseTest, TestRemovePart)
 {
-    Warehouse warehouse;
+    Warehouse warehouse({1});
     Part* pPtr;
 
     ASSERT_FALSE(warehouse.RemovePart(1));
