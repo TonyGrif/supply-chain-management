@@ -9,17 +9,29 @@ TEST(SupplierTest, TestConstructor)
     ASSERT_EQ(sup.Identification(), 'A');
     ASSERT_EQ(sup.ProductionRate(), 2);
 
-    ASSERT_EQ(sup.NumberOfPartTypes(), 1);
-    ASSERT_EQ(sup.NumberOfParts(1), 0);
+    ASSERT_EQ(sup.NumberOfPartTypes(), 0);
+    ASSERT_EQ(sup.NumberOfParts(0), 0);
 }
 
-TEST(SupplierTest, TestAddNewPart)
+TEST(SupplierTest, TestVariableConstructor)
+{
+    Supplier bigSup({1, 2, 3, 4, 5}, 'B', 3);
+
+    ASSERT_EQ(bigSup.Identification(), 'B');
+    ASSERT_EQ(bigSup.ProductionRate(), 3);
+
+    ASSERT_EQ(bigSup.NumberOfPartTypes(), 5);
+}
+
+TEST(SupplierTest, TestAddNewPartType)
 {
     Supplier sup;
     int num = sup.NumberOfPartTypes();
+    ASSERT_EQ(num, 0);
 
     sup.AddNewPartType(7);
     ASSERT_EQ(sup.NumberOfPartTypes(), (num+1));
+    num = sup.NumberOfPartTypes();
 
     sup.AddNewPartType(1);
     ASSERT_EQ(sup.NumberOfPartTypes(), (num+1));
@@ -27,7 +39,7 @@ TEST(SupplierTest, TestAddNewPart)
 
 TEST(SupplierTest, TestAddPart)
 {
-    Supplier sup;
+    Supplier sup({1});
     Part* pPtr = new Part(1);
     ASSERT_TRUE(sup.AddPart(pPtr));
 
@@ -37,7 +49,7 @@ TEST(SupplierTest, TestAddPart)
 
 TEST(SupplierTest, TestRemovePart)
 {
-    Supplier sup;
+    Supplier sup({1});
     Part* ptr;
 
     ASSERT_FALSE(sup.RemovePart(1));

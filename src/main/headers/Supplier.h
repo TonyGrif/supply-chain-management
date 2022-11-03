@@ -22,6 +22,15 @@ class Supplier
         Supplier(char si = 'A', int pr = 2);
 
         /**
+         * @brief Construct a new Supplier object with all the necessary data.
+         * 
+         * @param types Collection of integers that determines the parts this object produces.
+         * @param si Character representation of this supplier.
+         * @param pr Integer production rate.
+         */
+        Supplier(std::initializer_list<int> types, char si = 'A', int pr = 2);
+
+        /**
          * @brief Add a new part type to the storage variable.
          * 
          * @param t Integer representation of the part type.

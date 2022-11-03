@@ -6,3 +6,10 @@ Supplier::Supplier(char t, int p)
     this->Identification(t);
     this->ProductionRate(p);
 }
+
+Supplier::Supplier(std::initializer_list<int> types, char t, int p)
+    : storage(types)
+{
+    this->Identification(t);
+    this->ProductionRate(p);
+}
