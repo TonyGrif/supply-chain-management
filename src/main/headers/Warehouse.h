@@ -68,7 +68,7 @@ class Warehouse
         /**
          * @brief Remove a Part of a given type.
          * 
-         * @param pt
+         * @param pt Integer representation of the part type to be poped.
          * 
          * @return True if there is a Part of type to remove.
          * @return False if there is no Part to remove of type. 
@@ -124,7 +124,6 @@ class Warehouse
          */
         std::list<PartCollection> collectionOfParts;
         
-
         /**
          * @brief Integer representation of the capacity of this warehouse.
          * 
