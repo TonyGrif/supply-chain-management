@@ -57,6 +57,13 @@ TEST(WarehouseTest, TestAddPartType)
     ASSERT_EQ(warehouse.NumberOfPartTypes(), currentNumber);
 
     ASSERT_EQ(0, warehouse.NumOfParts(5));
+
+    currentNumber = warehouse.NumberOfPartTypes();
+    warehouse.AddPartType(0);
+    ASSERT_EQ(warehouse.NumberOfPartTypes(), currentNumber);
+
+    warehouse.AddPartType(-1);
+    ASSERT_EQ(warehouse.NumberOfPartTypes(), currentNumber);
 }
 
 TEST(WarehouseTest, TestAddPart)

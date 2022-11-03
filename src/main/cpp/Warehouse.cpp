@@ -12,6 +12,9 @@ Warehouse::Warehouse(std::initializer_list<int> types, int s)
 
 void Warehouse::AddPartType(int t)
 {
+    // Zeros and Negatives not allowed
+    if(t <= 0) { return; }
+
     // Ensure no duplicate part type
     for(auto& i : this->collectionOfParts) {
         if(i.collectionDesignation == t) {

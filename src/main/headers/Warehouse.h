@@ -38,6 +38,7 @@ class Warehouse
          * @brief Adds a new part type to the collection.
          * 
          * Adds a new part type, checks to ensure that a duplicate part is not being added. 
+         * If a zero or negative number is passed in, do not add and return.
          * 
          * @param t Integer representation of a Part type. 
          */
