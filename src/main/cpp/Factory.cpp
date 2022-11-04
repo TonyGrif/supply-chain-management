@@ -1,6 +1,6 @@
 #include "../headers/Factory.h"
 
-Factory::Factory()
-    : storage({0})
+Factory::Factory(std::initializer_list<int> types)
+    : storage(types)
 {
 }
