@@ -19,10 +19,9 @@ class Factory
         /**
          * @brief Construct a new Factory object.
          * 
-         * Construct a new Factory object based on the default constructor. 
-         * Default Warehouse will be set to defaults.
+         * @param types Intitializer list of integers to determine the Part types this factory will require
          */
-        Factory();
+        Factory(std::initializer_list<int> types);
 
         /**
          * @brief Add a new part type to the storage variable.

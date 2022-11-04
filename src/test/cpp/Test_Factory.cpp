@@ -4,14 +4,14 @@
 
 TEST(FactoryTest, TestConstructor)
 {
-    Factory fac;
+    Factory fac({1});
 
     ASSERT_EQ(fac.NumberOfPartTypes(), 1);
 }
 
 TEST(FactoryTest, TestAddNewPartType)
 {
-    Factory fac;
+    Factory fac({1});
     int num = fac.NumberOfPartTypes();
 
     fac.AddNewPartType(7);
@@ -19,11 +19,17 @@ TEST(FactoryTest, TestAddNewPartType)
 
     fac.AddNewPartType(1);
     ASSERT_EQ(fac.NumberOfPartTypes(), (num+1));
+
+    fac.AddNewPartType(0);
+    ASSERT_EQ(fac.NumberOfPartTypes(), (num+1));
+
+    fac.AddNewPartType(-1);
+    ASSERT_EQ(fac.NumberOfPartTypes(), (num+1));
 }
 
 TEST(FactoryTest, TestAddPart)
 {
-    Factory fac;
+    Factory fac({1});
 
     Part* pPtr = new Part(1);
     bool added = fac.AddPart(pPtr);
@@ -36,7 +42,7 @@ TEST(FactoryTest, TestAddPart)
 
 TEST(FactoryTest, TestRemovePart)
 {
-    Factory fac;
+    Factory fac({1});
     Part* ptr;
 
     ASSERT_FALSE(fac.RemovePart(1));
