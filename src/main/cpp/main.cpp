@@ -5,12 +5,10 @@
 
 int main()
 {
-	Factory factory;
-	Supplier supplierA('A'), supplierB('B'), supplierC('C');
+	Factory factory({1,2,3});
+	Supplier supplierA({1}, 'A'), supplierB({2}, 'B'), supplierC({3}, 'C');
+	Supplier sub_supplierD({1, 3}, 'D'), sub_supplierE({1, 2, 3}, 'E');
 	char cont;
-
-	factory.AddNewPartType(2);
-	factory.AddNewPartType(3);
 
 	do
 	{
