@@ -20,11 +20,36 @@ void Supplier::TimeStep()
 {
     this->timeElapsed++;
 
-    // NOTE: Does not currently produce other types of parts
-    // Will need to be updated when the factory is created
+    if(this->NumberOfPartTypes() == 0) {
+        if(this->ReturnTimeTillProduce() == 0) { this->timeElapsed = 0; }
+        return;
+    }
+
     if(this->ReturnTimeTillProduce() == 0)
     {
-        Part* newPart = new Part;
+        int lowestType;
+        int curLowest = this->storage.Size();
+
+        for(auto& i : this->storage)
+        {
+            if(i.partStorage.size() == 0) { 
+                lowestType = i.collectionDesignation;
+                curLowest = 0;
+                break;
+            }
+            
+            if(i.partStorage.size() < curLowest) {
+                lowestType = i.collectionDesignation;
+                curLowest = i.partStorage.size();
+            }
+        }
+
+        if(curLowest == this->storage.Size()) {
+            this->timeElapsed = 0;
+            return;
+        }
+
+        Part* newPart = new Part(lowestType);
         this->AddPart(newPart);
 
         delete newPart;

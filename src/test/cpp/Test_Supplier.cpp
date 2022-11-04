@@ -17,14 +17,34 @@ TEST(SupplierTest, TestConstructor)
 TEST(SupplierTest, TestTimeStep)
 {
     Supplier sup({1});
+    Supplier zeroSup({0});
 
     for(int x = 0; x < sup.ProductionRate(); x++) {
         ASSERT_EQ(sup.ReturnTimeTillProduce(), sup.ProductionRate()-x);
         sup.TimeStep();
+        zeroSup.TimeStep();
     }
 
     ASSERT_EQ(sup.NumberOfParts(1), 1);
     ASSERT_EQ(sup.ReturnTimeTillProduce(), sup.ProductionRate());
+
+    ASSERT_EQ(zeroSup.NumberOfParts(0), 0);
+    ASSERT_EQ(zeroSup.ReturnTimeTillProduce(), zeroSup.ProductionRate());
+
+    Supplier multSup({1, 3});
+    for(int x = 0; x < multSup.ProductionRate(); x++) {
+        multSup.TimeStep();
+    }
+
+    ASSERT_EQ(multSup.NumberOfParts(1), 1);
+    ASSERT_EQ(multSup.NumberOfParts(3), 0);
+
+    for(int x = 0; x < multSup.ProductionRate(); x++) {
+        multSup.TimeStep();
+    }
+
+    ASSERT_EQ(multSup.NumberOfParts(1), 1);
+    ASSERT_EQ(multSup.NumberOfParts(3), 1);
 }
 
 TEST(SupplierTest, TestVariableConstructor)

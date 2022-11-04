@@ -119,11 +119,34 @@ class Warehouse
             std::stack<Part*> partStorage;
         };
 
+        using Collection = std::list<PartCollection>;
+
         /**
          * @brief Stack collection of the collection of Parts. 
          */
-        std::list<PartCollection> collectionOfParts;
-        
+        Collection collectionOfParts;
+
+    public:
+        using iterator = Collection::iterator;
+        using const_iterator = Collection::const_iterator;
+
+        iterator begin() {
+            return collectionOfParts.begin();
+        }
+
+        const_iterator begin() const {
+            return collectionOfParts.begin();
+        }
+
+        iterator end() {
+            return collectionOfParts.end();
+        }
+
+        const_iterator end() const {
+            return collectionOfParts.end();
+        }
+
+    private:
         /**
          * @brief Integer representation of the capacity of this warehouse.
          * 
