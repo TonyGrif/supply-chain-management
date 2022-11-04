@@ -2,7 +2,7 @@
 
 Warehouse::Warehouse(std::initializer_list<int> types, int s)
 {
-    this->Size(s);
+    this->Capacity(s);
     
     for(auto& i : types)
     {
@@ -30,7 +30,7 @@ bool Warehouse::AddPart(Part* ptr)
 {
     for(auto& i : this->collectionOfParts)
     {
-        if(i.collectionDesignation == ptr->Type() && i.partStorage.size() < this->Size()) {
+        if(i.collectionDesignation == ptr->Type() && i.partStorage.size() < this->Capacity()) {
             i.partStorage.push(ptr);
             return true;
         }
@@ -39,13 +39,14 @@ bool Warehouse::AddPart(Part* ptr)
     return false;
 }
 
-bool Warehouse::RemovePart(int pt) 
+Part* Warehouse::RemovePart(int pt) 
 {
     for(auto& i : this->collectionOfParts) {
         if(i.collectionDesignation == pt && i.partStorage.size() != 0) {
+            Part* retPart = i.partStorage.top();
             i.partStorage.pop();
-            return true;
+            return retPart;
         }
     }
-    return false;
+    return NULL;
 }

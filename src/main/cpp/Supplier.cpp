@@ -28,7 +28,7 @@ void Supplier::TimeStep()
     if(this->ReturnTimeTillProduce() == 0)
     {
         int lowestType;
-        int curLowest = this->storage.Size();
+        int curLowest = this->storage.Capacity();
 
         for(auto& i : this->storage)
         {
@@ -44,7 +44,7 @@ void Supplier::TimeStep()
             }
         }
 
-        if(curLowest == this->storage.Size()) {
+        if(curLowest == this->storage.Capacity()) {
             this->timeElapsed = 0;
             return;
         }
