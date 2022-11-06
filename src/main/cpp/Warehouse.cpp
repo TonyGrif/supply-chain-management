@@ -1,13 +1,20 @@
 #include "../headers/Warehouse.h"
 
-Warehouse::Warehouse(int s, int t)
+Warehouse::Warehouse(std::initializer_list<int> types, int s)
 {
-    this->Size(s);
-    this->AddPartType(t);
+    this->Capacity(s);
+    
+    for(auto& i : types)
+    {
+        this->AddPartType(i);
+    }
 }
 
 void Warehouse::AddPartType(int t)
 {
+    // Zeros and Negatives not allowed
+    if(t <= 0) { return; }
+
     // Ensure no duplicate part type
     for(auto& i : this->collectionOfParts) {
         if(i.collectionDesignation == t) {
@@ -23,7 +30,7 @@ bool Warehouse::AddPart(Part* ptr)
 {
     for(auto& i : this->collectionOfParts)
     {
-        if(i.collectionDesignation == ptr->Type() && i.partStorage.size() < this->Size()) {
+        if(i.collectionDesignation == ptr->Type() && i.partStorage.size() < this->Capacity()) {
             i.partStorage.push(ptr);
             return true;
         }
@@ -32,13 +39,14 @@ bool Warehouse::AddPart(Part* ptr)
     return false;
 }
 
-bool Warehouse::RemovePart(int pt) 
+Part* Warehouse::RemovePart(int pt) 
 {
     for(auto& i : this->collectionOfParts) {
         if(i.collectionDesignation == pt && i.partStorage.size() != 0) {
+            Part* retPart = i.partStorage.top();
             i.partStorage.pop();
-            return true;
+            return retPart;
         }
     }
-    return false;
+    return NULL;
 }

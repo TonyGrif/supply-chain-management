@@ -5,6 +5,7 @@
 
 #include <list>
 #include <stack>
+#include <initializer_list>
 
 /**
  * @brief Warehouse class. 
@@ -19,17 +20,17 @@ class Warehouse
          * 
          * Construct a new Warehouse object based on default constructor.
          * 
+         * @param types Collection of integers to determine part types stored in this object.
          * @param s Integer for maximum capacity of collection of Parts, default is 5.
-         * @param t Integer representation for the type of Part this object stores, default is 1.
          */
-        Warehouse(int s = 5, int t = 1);
-
+        Warehouse(std::initializer_list<int> types, int s = 5);
+    
         /**
-         * @brief Return the maximum size of this object.
+         * @brief Return the maximum capacity of this object.
          * 
          * @return Int representation of value stored at sizeOfWarehouse.
          */
-        int Size() const {
+        int Capacity() const {
             return this->sizeOfWarehouse;
         }
 
@@ -37,6 +38,7 @@ class Warehouse
          * @brief Adds a new part type to the collection.
          * 
          * Adds a new part type, checks to ensure that a duplicate part is not being added. 
+         * If a zero or negative number is passed in, do not add and return.
          * 
          * @param t Integer representation of a Part type. 
          */
@@ -58,7 +60,7 @@ class Warehouse
          * 
          * @param pPtr Pointer to a Part object to be added if possible.
          * 
-         * @return True if the Part was sucessfully added
+         * @return True if the Part was sucessfully added.
          * @return false if Part was not added as the warehouse does not store the type of Part given.
          */
         bool AddPart(Part* pPtr);
@@ -66,12 +68,11 @@ class Warehouse
         /**
          * @brief Remove a Part of a given type.
          * 
-         * @param pt
+         * @param pt Integer representation of the part type to be poped.
          * 
-         * @return True if there is a Part of type to remove.
-         * @return False if there is no Part to remove of type. 
+         * @return Pointer to the top element of the Part stack. 
          */
-        bool RemovePart(int pt);
+        Part* RemovePart(int pt);
 
         /**
          * @brief Return the number of Parts of a given type currently stored. 
@@ -94,6 +95,8 @@ class Warehouse
          */
         struct PartCollection
         {
+            using CollectionOfParts = std::stack<Part*>;
+
             /**
              * @brief Construct a new Part Collection object.
              * 
@@ -114,15 +117,37 @@ class Warehouse
             /**
              * @brief Collection of Part pointers that are currently stored in this collection.
              */
-            std::stack<Part*> partStorage;
+            CollectionOfParts partStorage;
         };
 
-        /**
-         * @brief Stack collection of the collection of Parts. 
-         */
-        std::list<PartCollection> collectionOfParts;
-        
+        using Collection = std::list<PartCollection>;
 
+        /**
+         * @brief List collection of the collection of Parts. 
+         */
+        Collection collectionOfParts;
+
+    public:
+        using iterator = Collection::iterator;
+        using const_iterator = Collection::const_iterator;
+
+        iterator begin() {
+            return collectionOfParts.begin();
+        }
+
+        const_iterator begin() const {
+            return collectionOfParts.begin();
+        }
+
+        iterator end() {
+            return collectionOfParts.end();
+        }
+
+        const_iterator end() const {
+            return collectionOfParts.end();
+        }
+
+    private:
         /**
          * @brief Integer representation of the capacity of this warehouse.
          * 
@@ -135,7 +160,7 @@ class Warehouse
          * 
          * @param s Integer representation of maximum size. 
          */
-        void Size(int s) {
+        void Capacity(int s) {
             this->sizeOfWarehouse = s;
         }
 };
