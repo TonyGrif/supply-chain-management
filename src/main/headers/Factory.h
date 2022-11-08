@@ -21,7 +21,7 @@ class Factory
          * 
          * @param types Intitializer list of integers to determine the Part types this factory will require
          */
-        Factory(std::initializer_list<int> types);
+        Factory(std::initializer_list<int> types, int size = 20);
 
         /**
          * @brief Carry out one time step for this factory.
@@ -93,10 +93,19 @@ class Factory
         /**
          * @brief Return the number of Suppliers currently collected in this factory.
          * 
-         * @return Integer.
+         * @return Integer number of suppliers collected.
          */
         int NumberOfSuppliers() const {
             return this->suppliers.size();
+        }
+
+        /**
+         * @brief Return the maximum number of parts (of one type) that can be stored in this factory.
+         * 
+         * @return Integer capacity of the warehouse.
+         */
+        int StorageCapacity() const {
+            return this->storage.Capacity();
         }
 
     private:

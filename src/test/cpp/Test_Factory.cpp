@@ -7,6 +7,7 @@ TEST(FactoryTest, TestConstructor)
     Factory fac({1});
 
     ASSERT_EQ(fac.NumberOfPartTypes(), 1);
+    ASSERT_EQ(fac.StorageCapacity(), 20);
 }
 
 TEST(FactoryTest, TestTimeStep)

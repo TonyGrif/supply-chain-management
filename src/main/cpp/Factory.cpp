@@ -1,7 +1,7 @@
 #include "../headers/Factory.h"
 
-Factory::Factory(std::initializer_list<int> types)
-    : storage(types)
+Factory::Factory(std::initializer_list<int> types, int size)
+    : storage(types, size)
 {
 }
 
