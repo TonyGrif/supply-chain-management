@@ -21,7 +21,15 @@ class Factory
          * 
          * @param types Intitializer list of integers to determine the Part types this factory will require
          */
-        Factory(std::initializer_list<int> types);
+        Factory(std::initializer_list<int> types, int size = 20);
+
+        /**
+         * @brief Carry out one time step for this factory.
+         * 
+         * If all parts of storage are filled, decrement each and create one product.
+         * If one or more parts of storage are empty, place orders for those parts from one of the suppliers.
+         */
+        void TimeStep();
 
         /**
          * @brief Add a new part type to the storage variable.
@@ -73,11 +81,43 @@ class Factory
             return this->storage.NumOfParts(pt);
         }
 
+        /**
+         * @brief Add a supplier to the factory's collection.
+         * 
+         * @param supPtr Pointer to a supplier.
+         */
+        void AddSupplier(Supplier* supPtr) {
+            this->suppliers.push_back(supPtr);
+        }
+
+        /**
+         * @brief Return the number of Suppliers currently collected in this factory.
+         * 
+         * @return Integer number of suppliers collected.
+         */
+        int NumberOfSuppliers() const {
+            return this->suppliers.size();
+        }
+
+        /**
+         * @brief Return the maximum number of parts (of one type) that can be stored in this factory.
+         * 
+         * @return Integer capacity of the warehouse.
+         */
+        int StorageCapacity() const {
+            return this->storage.Capacity();
+        }
+
     private:
         /**
          * @brief Warehouse collection for all the parts a Factory will need.
          */
         Warehouse storage;
+
+        /**
+         * @brief Collection of potential suppliers for this factory.
+         */
+        SupplierCollection suppliers;        
 };
 
 #endif 

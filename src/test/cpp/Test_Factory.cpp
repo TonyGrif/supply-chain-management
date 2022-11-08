@@ -7,6 +7,29 @@ TEST(FactoryTest, TestConstructor)
     Factory fac({1});
 
     ASSERT_EQ(fac.NumberOfPartTypes(), 1);
+    ASSERT_EQ(fac.StorageCapacity(), 20);
+}
+
+TEST(FactoryTest, TestTimeStep)
+{
+    Factory fac({1, 2});
+
+    Part* pPtr;
+    pPtr = new Part(1);
+    fac.AddPart(pPtr);
+
+    pPtr = new Part(2);
+    fac.AddPart(pPtr);
+
+    fac.TimeStep();
+    ASSERT_EQ(fac.NumberOfParts(1), 0);
+    ASSERT_EQ(fac.NumberOfParts(2), 0);
+
+    pPtr = new Part(1);
+    fac.AddPart(pPtr);
+    fac.TimeStep();
+    ASSERT_EQ(fac.NumberOfParts(1), 1);
+    ASSERT_EQ(fac.NumberOfParts(2), 0);
 }
 
 TEST(FactoryTest, TestAddNewPartType)
@@ -52,4 +75,14 @@ TEST(FactoryTest, TestRemovePart)
     fac.AddPart(ptr);
 
     ASSERT_TRUE(fac.RemovePart(1));
+}
+
+TEST(FactoryTest, TestAddSupplier)
+{
+    Factory fac({1});
+    Supplier* supPtr = new Supplier({1});
+
+    ASSERT_EQ(fac.NumberOfSuppliers(), 0);
+    fac.AddSupplier(supPtr);
+    ASSERT_EQ(fac.NumberOfSuppliers(), 1);
 }
