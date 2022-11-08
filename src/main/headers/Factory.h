@@ -24,6 +24,14 @@ class Factory
         Factory(std::initializer_list<int> types);
 
         /**
+         * @brief Carry out one time step for this factory.
+         * 
+         * If all parts of storage are filled, decrement each and create one product.
+         * If one or more parts of storage are empty, place orders for those parts from one of the suppliers.
+         */
+        void TimeStep();
+
+        /**
          * @brief Add a new part type to the storage variable.
          * 
          * @param t Integer representation of the part type.

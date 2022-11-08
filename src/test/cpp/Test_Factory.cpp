@@ -9,6 +9,28 @@ TEST(FactoryTest, TestConstructor)
     ASSERT_EQ(fac.NumberOfPartTypes(), 1);
 }
 
+TEST(FactoryTest, TestTimeStep)
+{
+    Factory fac({1, 2});
+
+    Part* pPtr;
+    pPtr = new Part(1);
+    fac.AddPart(pPtr);
+
+    pPtr = new Part(2);
+    fac.AddPart(pPtr);
+
+    fac.TimeStep();
+    ASSERT_EQ(fac.NumberOfParts(1), 0);
+    ASSERT_EQ(fac.NumberOfParts(2), 0);
+
+    pPtr = new Part(1);
+    fac.AddPart(pPtr);
+    fac.TimeStep();
+    ASSERT_EQ(fac.NumberOfParts(1), 1);
+    ASSERT_EQ(fac.NumberOfParts(2), 0);
+}
+
 TEST(FactoryTest, TestAddNewPartType)
 {
     Factory fac({1});
