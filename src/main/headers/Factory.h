@@ -81,11 +81,34 @@ class Factory
             return this->storage.NumOfParts(pt);
         }
 
+        /**
+         * @brief Add a supplier to the factory's collection.
+         * 
+         * @param supPtr Pointer to a supplier.
+         */
+        void AddSupplier(Supplier* supPtr) {
+            this->suppliers.push_back(supPtr);
+        }
+
+        /**
+         * @brief Return the number of Suppliers currently collected in this factory.
+         * 
+         * @return Integer.
+         */
+        int NumberOfSuppliers() const {
+            return this->suppliers.size();
+        }
+
     private:
         /**
          * @brief Warehouse collection for all the parts a Factory will need.
          */
         Warehouse storage;
+
+        /**
+         * @brief Collection of potential suppliers for this factory.
+         */
+        SupplierCollection suppliers;        
 };
 
 #endif 

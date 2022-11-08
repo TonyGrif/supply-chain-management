@@ -75,3 +75,13 @@ TEST(FactoryTest, TestRemovePart)
 
     ASSERT_TRUE(fac.RemovePart(1));
 }
+
+TEST(FactoryTest, TestAddSupplier)
+{
+    Factory fac({1});
+    Supplier* supPtr = new Supplier({1});
+
+    ASSERT_EQ(fac.NumberOfSuppliers(), 0);
+    fac.AddSupplier(supPtr);
+    ASSERT_EQ(fac.NumberOfSuppliers(), 1);
+}
