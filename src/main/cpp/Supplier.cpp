@@ -49,11 +49,9 @@ void Supplier::TimeStep()
             return;
         }
 
-        Part* newPart = new Part(lowestType);
+        Part newPart(lowestType);
         this->AddPart(newPart);
 
-        delete newPart;
-        newPart = NULL;
         this->timeElapsed = 0;
     }
 }

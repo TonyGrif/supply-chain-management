@@ -77,11 +77,11 @@ TEST(SupplierTest, TestAddNewPartType)
 TEST(SupplierTest, TestAddPart)
 {
     Supplier sup({1});
-    Part* pPtr = new Part(1);
-    ASSERT_TRUE(sup.AddPart(pPtr));
+    Part firstPart;
+    ASSERT_TRUE(sup.AddPart(firstPart));
 
-    pPtr = new Part(3);
-    ASSERT_FALSE(sup.AddPart(pPtr));
+    Part secondPart(3);
+    ASSERT_FALSE(sup.AddPart(secondPart));
 
     ASSERT_EQ(sup.ReturnTimeTillProduce(), sup.ProductionRate());
 }
@@ -89,15 +89,20 @@ TEST(SupplierTest, TestAddPart)
 TEST(SupplierTest, TestRemovePart)
 {
     Supplier sup({1});
-    Part* ptr;
 
-    ASSERT_FALSE(sup.RemovePart(1));
-    ASSERT_FALSE(sup.RemovePart(3));
+    Part firstPart;
+    sup.AddPart(firstPart);
 
-    ptr = new Part;
-    sup.AddPart(ptr);
+    Part getPart = sup.RemovePart(1);
+    ASSERT_EQ(getPart.Type(), 1);
 
-    ASSERT_TRUE(sup.RemovePart(1));
+    Supplier sup2({1, 2});
+
+    Part secPart(2);
+    sup2.AddPart(secPart);
+    getPart = sup2.RemovePart(2);
+
+    ASSERT_EQ(getPart.Type(), 2);
 
     ASSERT_EQ(sup.ReturnTimeTillProduce(), sup.ProductionRate());
 }
