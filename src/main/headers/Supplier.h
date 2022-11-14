@@ -63,18 +63,17 @@ class Supplier
          * @return True if the Part was successfully added.
          * @return False if the Part was not added to the collection.
          */
-        bool AddPart(Part* pPtr) {
-            return this->storage.AddPart(pPtr);
+        bool AddPart(Part addPart) {
+            return this->storage.AddPart(addPart);
         }
 
         /**
          * @brief Remove a Part from the warehouse.
          * 
          * @param pt Integer representation of the part designation.
-         * @return True if part was removed.
-         * @return False if part was not removed.
+         * @return Part pointer to the part being removed, will be NULL if unable to.
          */
-        bool RemovePart(int pt) {
+        Part RemovePart(int pt) {
             return this->storage.RemovePart(pt);
         }
 
@@ -114,6 +113,13 @@ class Supplier
         int ReturnTimeTillProduce() const {
             return (this->ProductionRate() - this->timeElapsed);
         }
+
+        /**
+         * @brief Return a string representation of this object.
+         * 
+         * @return String.
+         */
+        std::string toString() const;
 
     private:
         /**

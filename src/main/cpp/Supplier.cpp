@@ -49,11 +49,21 @@ void Supplier::TimeStep()
             return;
         }
 
-        Part* newPart = new Part(lowestType);
+        Part newPart(lowestType);
         this->AddPart(newPart);
 
-        delete newPart;
-        newPart = NULL;
         this->timeElapsed = 0;
     }
+}
+
+std::string Supplier::toString() const
+{
+    std::string string;
+
+    string += "Supplier ";
+    string += this->Identification();
+    string += " contains ";
+    string += this->storage.toString();
+
+    return string;
 }
