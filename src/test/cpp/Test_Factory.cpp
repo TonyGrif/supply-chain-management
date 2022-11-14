@@ -8,28 +8,30 @@ TEST(FactoryTest, TestConstructor)
 
     ASSERT_EQ(fac.NumberOfPartTypes(), 1);
     ASSERT_EQ(fac.StorageCapacity(), 20);
+    ASSERT_EQ(fac.NumberOfProducts(), 0);
 }
 
 TEST(FactoryTest, TestTimeStep)
 {
     Factory fac({1, 2});
+    Supplier* sPtr = new Supplier({1}, 'A');
+    fac.AddSupplier(sPtr);
+    Supplier* sPtr2 = new Supplier({2}, 'B');
+    fac.AddSupplier(sPtr2);
 
-    Part* pPtr;
-    pPtr = new Part(1);
-    fac.AddPart(pPtr);
-
-    pPtr = new Part(2);
-    fac.AddPart(pPtr);
+    Part firstPart;
+    fac.AddPart(firstPart);
+    Part secondPart(2);
+    fac.AddPart(secondPart);
 
     fac.TimeStep();
+    ASSERT_EQ(fac.NumberOfProducts(), 1);
     ASSERT_EQ(fac.NumberOfParts(1), 0);
     ASSERT_EQ(fac.NumberOfParts(2), 0);
 
-    pPtr = new Part(1);
-    fac.AddPart(pPtr);
     fac.TimeStep();
-    ASSERT_EQ(fac.NumberOfParts(1), 1);
-    ASSERT_EQ(fac.NumberOfParts(2), 0);
+    fac.TimeStep();
+    ASSERT_EQ(fac.NumberOfProducts(), 2);
 }
 
 TEST(FactoryTest, TestAddNewPartType)
@@ -54,27 +56,31 @@ TEST(FactoryTest, TestAddPart)
 {
     Factory fac({1});
 
-    Part* pPtr = new Part(1);
-    bool added = fac.AddPart(pPtr);
+    Part addPart;
+    bool added = fac.AddPart(addPart);
     ASSERT_TRUE(added);
 
-    pPtr = new Part(3);
-    added = fac.AddPart(pPtr);
+    Part secondPart(3);
+    added = fac.AddPart(secondPart);
     ASSERT_FALSE(added);
 }
 
 TEST(FactoryTest, TestRemovePart)
 {
     Factory fac({1});
-    Part* ptr;
+    
+    Part remPart;
+    remPart = fac.RemovePart(1);
+    ASSERT_EQ(remPart.Type(), -1);
 
-    ASSERT_FALSE(fac.RemovePart(1));
-    ASSERT_FALSE(fac.RemovePart(3));
+    remPart = fac.RemovePart(3);
+    ASSERT_EQ(remPart.Type(), -1);
 
-    ptr = new Part;
-    fac.AddPart(ptr);
+    Part addPart;
+    fac.AddPart(addPart);
 
-    ASSERT_TRUE(fac.RemovePart(1));
+    remPart = fac.RemovePart(1);
+    ASSERT_EQ(remPart.Type(), 1);
 }
 
 TEST(FactoryTest, TestAddSupplier)

@@ -3,9 +3,11 @@
 
 #include "Part.h"
 
-#include <list>
+#include <vector>
 #include <stack>
 #include <initializer_list>
+
+#include <iostream>
 
 /**
  * @brief Warehouse class. 
@@ -63,7 +65,7 @@ class Warehouse
          * @return True if the Part was sucessfully added.
          * @return false if Part was not added as the warehouse does not store the type of Part given.
          */
-        bool AddPart(Part* pPtr);
+        bool AddPart(Part addPart);
 
         /**
          * @brief Remove a Part of a given type.
@@ -72,7 +74,7 @@ class Warehouse
          * 
          * @return Pointer to the top element of the Part stack. 
          */
-        Part* RemovePart(int pt);
+        Part RemovePart(int pt);
 
         /**
          * @brief Return the number of Parts of a given type currently stored. 
@@ -95,7 +97,7 @@ class Warehouse
          */
         struct PartCollection
         {
-            using CollectionOfParts = std::stack<Part*>;
+            using CollectionOfParts = std::stack<Part>;
 
             /**
              * @brief Construct a new Part Collection object.
@@ -115,12 +117,12 @@ class Warehouse
             const int collectionDesignation;
 
             /**
-             * @brief Collection of Part pointers that are currently stored in this collection.
+             * @brief Collection of Parts that are currently stored in this collection.
              */
             CollectionOfParts partStorage;
         };
 
-        using Collection = std::list<PartCollection>;
+        using Collection = std::vector<PartCollection>;
 
         /**
          * @brief List collection of the collection of Parts. 

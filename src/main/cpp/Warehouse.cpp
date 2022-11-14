@@ -4,7 +4,7 @@ Warehouse::Warehouse(std::initializer_list<int> types, int s)
 {
     this->Capacity(s);
     
-    for(auto& i : types)
+    for(auto i : types)
     {
         this->AddPartType(i);
     }
@@ -26,12 +26,12 @@ void Warehouse::AddPartType(int t)
     this->collectionOfParts.push_back(newPart);
 }
 
-bool Warehouse::AddPart(Part* ptr)
+bool Warehouse::AddPart(Part addPart)
 {
     for(auto& i : this->collectionOfParts)
     {
-        if(i.collectionDesignation == ptr->Type() && i.partStorage.size() < this->Capacity()) {
-            i.partStorage.push(ptr);
+        if(i.collectionDesignation == addPart.Type() && i.partStorage.size() < this->Capacity()) {
+            i.partStorage.push(addPart);
             return true;
         }
     }
@@ -39,14 +39,16 @@ bool Warehouse::AddPart(Part* ptr)
     return false;
 }
 
-Part* Warehouse::RemovePart(int pt) 
+Part Warehouse::RemovePart(int pt) 
 {
-    for(auto& i : this->collectionOfParts) {
-        if(i.collectionDesignation == pt && i.partStorage.size() != 0) {
-            Part* retPart = i.partStorage.top();
-            i.partStorage.pop();
+    for(int x = 0; x < this->collectionOfParts.size(); x++)
+    {
+        if(this->collectionOfParts[x].collectionDesignation == pt && this->collectionOfParts[x].partStorage.size() != 0)
+        {
+            Part retPart(pt);
+            this->collectionOfParts[x].partStorage.pop();
             return retPart;
         }
     }
-    return NULL;
+    return -1;
 }
