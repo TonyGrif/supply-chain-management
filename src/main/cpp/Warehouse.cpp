@@ -52,3 +52,18 @@ Part Warehouse::RemovePart(int pt)
     }
     return -1;
 }
+
+std::string Warehouse::toString() const
+{
+    std::string string;
+
+    for(auto i : this->collectionOfParts)
+    {
+        string += i.collectionDesignation;
+        string += " - #";
+        string += std::to_string(i.partStorage.size());
+        string += "\n";
+    }
+
+    return string;
+}

@@ -2,7 +2,6 @@
 #define SUPPLIER_H
 
 #include "Warehouse.h"
-#include <iostream>
 
 /**
  * @brief Supplier Class.
@@ -114,6 +113,13 @@ class Supplier
         int ReturnTimeTillProduce() const {
             return (this->ProductionRate() - this->timeElapsed);
         }
+
+        /**
+         * @brief Return a string representation of this object.
+         * 
+         * @return String.
+         */
+        std::string toString() const;
 
     private:
         /**

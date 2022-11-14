@@ -6,8 +6,7 @@
 #include <vector>
 #include <stack>
 #include <initializer_list>
-
-#include <iostream>
+#include <string>
 
 /**
  * @brief Warehouse class. 
@@ -88,6 +87,13 @@ class Warehouse
             }
             return 0;
         }
+
+        /**
+         * @brief Return string representation of this object.
+         * 
+         * @return String.
+         */
+        std::string toString() const;
 
     private:
         /**

@@ -116,6 +116,13 @@ class Factory
             return this->numOfProducts;
         }
 
+        /**
+         * @brief Return string representation of this object.
+         * 
+         * @return String.
+         */
+        std::string toString() const;
+
     private:
         /**
          * @brief Warehouse collection for all the parts a Factory will need.

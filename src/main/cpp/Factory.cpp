@@ -39,3 +39,26 @@ void Factory::TimeStep()
         this->RemovePart(i.collectionDesignation);
     }
 }
+
+std::string Factory::toString() const
+{
+    std::string string;
+
+    string += "Production Counter - ";
+    string += std::to_string(this->NumberOfProducts());
+    string += "\n";
+
+    string += "Current Suppliers";
+    string += "\n";
+    string += "-----------------";
+    string += "\n";
+
+    for(auto i : this->suppliers)
+    {
+        string += i->toString();
+    }
+
+    string += "\n";
+
+    return string;
+}
