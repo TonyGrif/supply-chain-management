@@ -69,8 +69,8 @@ TEST(WarehouseTest, TestAddPartType)
 TEST(WarehouseTest, TestAddPart)
 {
     Warehouse warehouse({1});
-    Part *firstPtr = new Part;
-    Part *secondPtr = new Part(3);
+    Part firstPtr;
+    Part secondPtr(3);
 
     bool added = warehouse.AddPart(firstPtr);
     ASSERT_TRUE(added);
@@ -80,13 +80,16 @@ TEST(WarehouseTest, TestAddPart)
     ASSERT_EQ(0, warehouse.NumOfParts(3));
 
     for(int x = 0; x < warehouse.Capacity()-1; x++) {
-        firstPtr = new Part;
-        added = warehouse.AddPart(firstPtr);
+        Part newPart;
+        added = warehouse.AddPart(newPart);
         ASSERT_TRUE(added);
+        ASSERT_EQ(warehouse.NumOfParts(1), x+2);
     }
 
-    firstPtr = new Part;
-    added = warehouse.AddPart(firstPtr);
+    ASSERT_EQ(warehouse.NumOfParts(1), warehouse.Capacity());
+
+    Part newishPart;
+    added = warehouse.AddPart(newishPart);
     ASSERT_FALSE(added);
 
     ASSERT_EQ(warehouse.Capacity(), warehouse.NumOfParts(1));
@@ -96,18 +99,31 @@ TEST(WarehouseTest, TestAddPart)
 TEST(WarehouseTest, TestRemovePart)
 {
     Warehouse warehouse({1});
-    Part* pPtr;
 
-    ASSERT_FALSE(warehouse.RemovePart(1));
+    ASSERT_EQ(warehouse.NumOfParts(1), 0);
 
     for(int x = 0; x < warehouse.Capacity(); x++) {
-        pPtr = new Part;
+        Part pPtr;
         warehouse.AddPart(pPtr);
     }
 
-    ASSERT_FALSE(warehouse.RemovePart(3));
+    ASSERT_EQ(warehouse.NumOfParts(1), warehouse.Capacity());
 
     for(int x = 0; x < warehouse.Capacity(); x++) {
-        ASSERT_TRUE(warehouse.RemovePart(1));
+        Part testPart;
+        testPart = warehouse.RemovePart(1);
+        
+        ASSERT_EQ(testPart.Type(), 1);
+        ASSERT_EQ(warehouse.NumOfParts(1), warehouse.Capacity()-(x+1));
     }
+    ASSERT_EQ(warehouse.NumOfParts(1), 0);
+
+    Warehouse w3({1, 3}, 5);
+
+    for(int x = 0; x < w3.Capacity(); x++) {
+        Part thPtr(x);
+        warehouse.AddPart(thPtr);
+    }
+    Part retPtr = w3.RemovePart(3);
+    ASSERT_EQ(retPtr.Type(), 3);
 }
