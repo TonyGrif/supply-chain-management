@@ -4,7 +4,7 @@ Warehouse::Warehouse(std::initializer_list<int> types, int s)
 {
     this->Capacity(s);
     
-    for(auto& i : types)
+    for(auto i : types)
     {
         this->AddPartType(i);
     }
@@ -43,7 +43,7 @@ Part Warehouse::RemovePart(int pt)
 {
     for(int x = 0; x < this->collectionOfParts.size(); x++)
     {
-        if(this->collectionOfParts[x].collectionDesignation == pt)
+        if(this->collectionOfParts[x].collectionDesignation == pt && this->collectionOfParts[x].partStorage.size() != 0)
         {
             Part retPart(pt);
             this->collectionOfParts[x].partStorage.pop();

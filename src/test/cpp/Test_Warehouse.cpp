@@ -94,6 +94,19 @@ TEST(WarehouseTest, TestAddPart)
 
     ASSERT_EQ(warehouse.Capacity(), warehouse.NumOfParts(1));
     ASSERT_EQ(0, warehouse.NumOfParts(3));
+
+    Warehouse multWarehouse({1, 3, 4, 6});
+    Part addPart;
+    ASSERT_TRUE(multWarehouse.AddPart(addPart));
+    ASSERT_EQ(multWarehouse.NumOfParts(1), 1);
+    
+    Part newPart(3);
+    ASSERT_TRUE(multWarehouse.AddPart(newPart));
+    ASSERT_EQ(multWarehouse.NumOfParts(3), 1);
+
+    Part newerPart(6);
+    ASSERT_TRUE(multWarehouse.AddPart(newerPart));
+    ASSERT_EQ(multWarehouse.NumOfParts(6), 1);
 }
 
 TEST(WarehouseTest, TestRemovePart)
@@ -118,12 +131,15 @@ TEST(WarehouseTest, TestRemovePart)
     }
     ASSERT_EQ(warehouse.NumOfParts(1), 0);
 
-    Warehouse w3({1, 3}, 5);
+    Warehouse w3({1, 3});
 
-    for(int x = 0; x < w3.Capacity(); x++) {
-        Part thPtr(x);
-        warehouse.AddPart(thPtr);
-    }
+    Part firstPart;
+    w3.AddPart(firstPart);
+    Part thirdPart(3);
+    w3.AddPart(thirdPart);
+    
+    ASSERT_EQ(w3.NumOfParts(1), 1);
+    ASSERT_EQ(w3.NumOfParts(3), 1);
     Part retPtr = w3.RemovePart(3);
     ASSERT_EQ(retPtr.Type(), 3);
 }

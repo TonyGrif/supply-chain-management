@@ -56,18 +56,17 @@ class Factory
          * @return True if the Part was successfully added.
          * @return False if the Part was not added to the collection.
          */
-        bool AddPart(Part* pPtr) {
-            return this->storage.AddPart(pPtr);
+        bool AddPart(Part toAdd) {
+            return this->storage.AddPart(toAdd);
         }
 
         /**
          * @brief Remove a Part from the warehouse.
          * 
          * @param pt Integer representation of the part designation
-         * @return True if part was removed.
-         * @return False if part was not removed.
+         * @return Part object.
          */
-        bool RemovePart(int pt) {
+        Part RemovePart(int pt) {
             return this->storage.RemovePart(pt);
         }
 
@@ -108,6 +107,15 @@ class Factory
             return this->storage.Capacity();
         }
 
+        /**
+         * @brief Return the number of products that have been created by this object.
+         * 
+         * @return Integer.
+         */
+        int NumberOfProducts() const {
+            return this->numOfProducts;
+        }
+
     private:
         /**
          * @brief Warehouse collection for all the parts a Factory will need.
@@ -118,6 +126,11 @@ class Factory
          * @brief Collection of potential suppliers for this factory.
          */
         SupplierCollection suppliers;        
+
+        /**
+         * @brief Stores the number of products that have been created by this object.
+         */
+        int numOfProducts;
 };
 
 #endif 
